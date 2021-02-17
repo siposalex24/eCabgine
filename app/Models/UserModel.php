@@ -36,10 +36,10 @@ class UserModel extends Model
 
     return $data;
   }
-  public function getUser($user)
+  public function getUser($email)
   {
     return $this->asArray()
-      ->where(['user' => $user])
+      ->where(['email' => $email])
       ->first();
   }
 }

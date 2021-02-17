@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    
-    <title></title>
-  </head>
-  <body>
-    <?php
-    $uri = service('uri');
-    ?>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-light">
-      <div class="container">
-        <a class="navbar-logo" href="#" style="max-width: 10%;">
-          <img src="assets/img/logot.png" class="img-fluid">
-        </a>
-        <a class="navbar-brand" href="/">eCabgine</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <title></title>
+</head>
+
+<body>
+  <?php
+  $uri = service('uri');
+  ?>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+    <div class="container">
+      <a class="navbar-logo" href="#" style="max-width: 10%;">
+        <img src="assets/img/logot.png" class="img-fluid">
+      </a>
+      <a class="navbar-brand" href="/">eCabgine</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <?php if (session()->get('isLoggedIn')): ?>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <?php if (session()->get('isLoggedIn')) : ?>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item <?= ($uri->getSegment(1) == 'dashboard' ? 'active' : null) ?>">
-              <a class="nav-link"  href="/dashboard">Dashboard</a>
+              <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
             <li class="nav-item <?= ($uri->getSegment(1) == 'profile' ? 'active' : null) ?>">
               <a class="nav-link" href="/profile">Profile</a>
@@ -35,14 +37,14 @@
               <a class="nav-link" href="/logout">Logout</a>
             </li>
           </ul>
-          <?php else: ?>
+        <?php else : ?>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item <?= ($uri->getSegment(1) == '' ? 'active' : null) ?>">
               <a class="nav-link" href="/">Login</a>
             </li>
-            
+
           </ul>
-          <?php endif; ?>
-        </div>
+        <?php endif; ?>
       </div>
-    </nav>
+    </div>
+  </nav>
