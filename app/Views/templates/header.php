@@ -23,16 +23,17 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
         <?php if (session()->get('isLoggedIn')) : ?>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item <?= ($uri->getSegment(1) == 'dashboard' ? 'active' : null) ?>">
               <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
+          </ul>
+          <ul class="navbar-nav my-2 my-lg-0">
             <li class="nav-item <?= ($uri->getSegment(1) == 'profile' ? 'active' : null) ?>">
               <a class="nav-link" href="/profile">Profile</a>
             </li>
-          </ul>
-          <ul class="navbar-nav my-2 my-lg-0">
             <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
             </li>
@@ -41,10 +42,12 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item <?= ($uri->getSegment(1) == '' ? 'active' : null) ?>">
               <a class="nav-link" href="/">Login</a>
+            <li class="nav-item <?= ($uri->getSegment(1) == 'register' ? 'active' : null) ?>">
+              <a class="nav-link" href="register">Register</a>
             </li>
-
           </ul>
         <?php endif; ?>
       </div>
     </div>
   </nav>
+  <div class='container'>

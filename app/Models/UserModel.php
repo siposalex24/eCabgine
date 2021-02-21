@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class UserModel extends Model
 {
   protected $table = 'users';
-  protected $allowedFields = ['firstname', 'lastname', 'email', 'password', 'updated_at'];
+  protected $allowedFields = ['firstname', 'lastname', 'email', 'password', 'updated_at', 'is_admin'];
   protected $beforeInsert = ['beforeInsert'];
   protected $beforeUpdate = ['beforeUpdate'];
 
@@ -17,7 +17,6 @@ class UserModel extends Model
   protected function beforeInsert(array $data)
   {
     $data = $this->passwordHash($data);
-    $data['data']['created_at'] = date('Y-m-d H:i:s');
 
     return $data;
   }
@@ -25,7 +24,7 @@ class UserModel extends Model
   protected function beforeUpdate(array $data)
   {
     $data = $this->passwordHash($data);
-    $data['data']['updated_at'] = date('Y-m-d H:i:s');
+
     return $data;
   }
 

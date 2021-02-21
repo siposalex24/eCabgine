@@ -31,12 +31,14 @@ class Letter extends BaseController
 			'cabinet' => $modelcab->getCabinet('Gine3'),
 			'user' => $modeluser->getUser('doctor@gmail.com'),
 			'patients' => $modelpacient->getPatient('1'),
-			'county' => $modelcounty->getCounty('1'),
+			//'county' => $modelcounty->getCounty('1'),
 			'city' => $modelcity->getCity('1'),
 			'consult' => $modelconsult->getConsult('1'),
-			'consult_analysis' => $modelanalyses->getAlalyzes(),
+			//'consult_analysis' => $modelanalyses->getAnalyzes(),
 			'today' => new Time('now', 'Europe/Bucharest'),
 		];
+		$data['county'] = $modelcounty->getCounty($data['patients']['id_county']);
+		$data['consult_analysis'] = $modelanalyses->getAnalyzes($data['consult']['id_consult']);
 		//var_dump($modelcab->getCabinet('Gine3'));
 		// die();
 		//$data['logo'] = \Config\Services::image()

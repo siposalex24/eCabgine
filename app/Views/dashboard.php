@@ -9,7 +9,14 @@
           <div class="text">
             <h5><a href="/lista_pacienti" class="btn btn-primary">Lista Pacienti</a></h5>
           </div>
-
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col-xs-3 col-sm-3">
+        <div class="card">
+          <div class="image"><img src="../assets/img/med3.jpg" width="100%" /></div>
+          <div class="text">
+            <h5><a href="/fisa_consult" class="btn btn-primary">Fisa Consult</a></h5>
+          </div>
         </div>
       </div>
       <div class="col-md-3 col-lg-3 col-xs-3 col-sm-3">
@@ -23,24 +30,26 @@
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3 col-lg-3 col-xs-3 col-sm-3">
-        <div class="card">
-          <div class="image"><img src="../assets/img/med3.jpg" width="100%" /></div>
-          <div class="text">
-            <h5><a href="/fisa_consult" class="btn btn-primary">Fisa Consult</a></h5>
+  <?php if (session()->get('is_admin') == 1) : ?>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-lg-3 col-xs-3 col-sm-3">
+          <div class="card">
+            <div class="image"><img src="../assets/img/med4.jpg" width="100%" /></div>
+            <div class="text">
+              <h5><a href="/mod_financiar" class="btn btn-primary">Mod Financiar</a></h5>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-3 col-lg-3 col-xs-3 col-sm-3">
-        <div class="card">
-          <div class="image"><img src="../assets/img/med4.jpg" width="100%" /></div>
-          <div class="text">
-            <h5><a href="/mod_financiar" class="btn btn-primary">Mod Financiar</a></h5>
+        <div class="col-md-3 col-lg-3 col-xs-3 col-sm-3">
+          <div class="card">
+            <div class="image"><img src="" width="100%" /></div>
+            <div class="text">
+              <h5><a href="/administrare" class="btn btn-primary">Administrare</a></h5>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  <?php endif; ?>
 </div>

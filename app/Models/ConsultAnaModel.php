@@ -14,10 +14,11 @@ class ConsultAnaModel
         $this->db = &$db;
     }
 
-    function getAlalyzes()
+    function getAnalyzes($id_consult)
     {
         $builder = $this->db->table('consult_analysis');
-        $builder->join('analysis', 'consult_analysis.id_analyses = analysis.id_analysis');
+        $builder->join('analysis', 'consult_analysis.id_analyses = analysis.id_analysis')
+            ->where(['id_consult' => $id_consult]);
         $analysis = $builder->get()->getResult('array');
         return $analysis;
     }
