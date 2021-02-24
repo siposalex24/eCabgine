@@ -16,7 +16,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-light">
     <div class="container">
       <a class="navbar-logo" href="#" style="max-width: 10%;">
-        <img src="assets/img/logot.png" class="img-fluid">
+        <img src="/assets/img/logot.png" class="img-fluid">
       </a>
       <a class="navbar-brand" href="/">eCabgine</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
