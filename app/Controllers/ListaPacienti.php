@@ -105,7 +105,10 @@ class ListaPacienti extends BaseController
         {
         	$data['user_data'] = $patientModel->where('id_patient', $id)->first();
         	$data['error'] = $this->validator;
+        	
+        	echo view('templates/header', $data);
         	echo view('edit_pacienti', $data);
+        	echo view('templates/footer', $data);
         } 
         else 
         {
