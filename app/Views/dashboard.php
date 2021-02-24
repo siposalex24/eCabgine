@@ -15,7 +15,7 @@
         <div class="card">
           <div class="image"><img src="../assets/img/med3.jpg" width="100%" /></div>
           <div class="text">
-            <h5><a href="/fisa_consult" class="btn btn-primary">Fisa Consult</a></h5>
+            <h5><a href="/medicalrecord" class="btn btn-primary">Medical report</a></h5>
           </div>
         </div>
       </div>

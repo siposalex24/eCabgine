@@ -10,11 +10,6 @@ class Users extends BaseController
 	public function index()
 	{
 
-		//classic Filtering
-		if (session()->get('isLoggedIn')) {
-			return redirect()->to('dashboard');
-		}
-		/////////////////////////////////////
 
 		$data = [];
 		helper(['form']);

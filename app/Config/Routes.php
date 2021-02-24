@@ -39,7 +39,7 @@ $routes->match(['get', 'post'], 'profile', 'Users::profile', ['filter' => 'auth'
 $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->get('lista_pacienti', 'ListaPacienti::index');
 $routes->get('dosar_pacienti', 'DosarPacienti::index');
-$routes->get('fisa_consult', 'FisaConsult::index');
+$routes->match(['get', 'post'], 'medicalrecord', 'MedicalRecord::index');
 $routes->get('mod_financiar', 'ModFinanciar::index');
 $routes->match(['get', 'post'], 'letter', 'Letter::index');
 
