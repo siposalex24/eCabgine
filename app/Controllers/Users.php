@@ -1,4 +1,6 @@
-<?php namespace App\Controllers;
+<?php
+
+namespace App\Controllers;
 
 use App\Models\UserModel;
 
@@ -9,10 +11,10 @@ class Users extends BaseController
 	{
 
 		//classic Filtering
-		if(session()->get('isLoggedIn')){
-          return redirect()->to('dashboard');
-        }
-        /////////////////////////////////////
+		if (session()->get('isLoggedIn')) {
+			return redirect()->to('dashboard');
+		}
+		/////////////////////////////////////
 
 		$data = [];
 		helper(['form']);
@@ -31,18 +33,17 @@ class Users extends BaseController
 				]
 			];
 
-			if (! $this->validate($rules, $errors)) {
+			if (!$this->validate($rules, $errors)) {
 				$data['validation'] = $this->validator;
-			}else{
+			} else {
 				$model = new UserModel();
 
 				$user = $model->where('email', $this->request->getVar('email'))
-											->first();
+					->first();
 
 				$this->setUserSession($user);
 				//$session->setFlashdata('success', 'Successful Registration');
 				return redirect()->to('dashboard');
-
 			}
 		}
 
@@ -50,13 +51,50 @@ class Users extends BaseController
 		echo view('login');
 		echo view('templates/footer');
 	}
+	public function register()
+	{
+		$data = [];
+		helper(['form']);
 
-	private function setUserSession($user){
+		if ($this->request->getMethod() == 'post') {
+			//Let's do the validation here
+			$rules = [
+				'firstname' => 'required|min_length[3]|max_length[20]',
+				'lastname' => 'required|min_length[3]|max_length[20]',
+				'email' => 'required|min_length[6]|max_length[20]|valid_email|is_unique[users.email]',
+				'password' => 'required|min_length[8]|max_length[255]',
+				'password_confirm' => 'matches[password]',
+			];
+			if (!$this->validate($rules)) {
+				$data['validation'] = $this->validator;
+			} else {
+				$model = new UserModel();
+				$newData = [
+					'firstname' => $this->request->getPost('firstname'),
+					'lastname' => $this->request->getPost('lastname'),
+					'email' => $this->request->getPost('email'),
+					'password' => $this->request->getPost('password'),
+					'is_admin' => 0,
+				];
+				$model->save($newData);
+				$session = session();
+				$session->setFlashdata('success', 'Successfuly Registratio');
+				return redirect()->to('/');
+			}
+		}
+		echo view('templates/header', $data);
+		echo view('register', $data);
+		echo view('templates/footer');
+	}
+
+	private function setUserSession($user)
+	{
 		$data = [
 			'id' => $user['id'],
 			'firstname' => $user['firstname'],
 			'lastname' => $user['lastname'],
 			'email' => $user['email'],
+			'is_admin' => $user['is_admin'],
 			'isLoggedIn' => true,
 		];
 
@@ -65,13 +103,14 @@ class Users extends BaseController
 	}
 
 
-	public function profile(){
+	public function profile()
+	{
 
 		//classic Filtering
-		if(! session()->get('isLoggedIn')){
-          return redirect()->to('/');
-        }
-        /////////////////////////////////
+		if (!session()->get('isLoggedIn')) {
+			return redirect()->to('/');
+		}
+		/////////////////////////////////
 
 		$data = [];
 		helper(['form']);
@@ -82,31 +121,31 @@ class Users extends BaseController
 			$rules = [
 				'firstname' => 'required|min_length[3]|max_length[20]',
 				'lastname' => 'required|min_length[3]|max_length[20]',
-				];
+			];
 
-			if($this->request->getPost('password') != ''){
+			if ($this->request->getPost('password') != '') {
 				$rules['password'] = 'required|min_length[8]|max_length[255]';
 				$rules['password_confirm'] = 'matches[password]';
 			}
 
 
-			if (! $this->validate($rules)) {
+			if (!$this->validate($rules)) {
 				$data['validation'] = $this->validator;
-			}else{
+			} else {
 
 				$newData = [
 					'id' => session()->get('id'),
 					'firstname' => $this->request->getPost('firstname'),
 					'lastname' => $this->request->getPost('lastname'),
-					];
-					if($this->request->getPost('password') != ''){
-						$newData['password'] = $this->request->getPost('password');
-					}
+					'is_admin'
+				];
+				if ($this->request->getPost('password') != '') {
+					$newData['password'] = $this->request->getPost('password');
+				}
 				$model->save($newData);
 
 				session()->setFlashdata('success', 'Successfuly Updated');
 				return redirect()->to('/profile');
-
 			}
 		}
 
@@ -116,11 +155,14 @@ class Users extends BaseController
 		echo view('templates/footer');
 	}
 
-	public function logout(){
+	public function logout()
+	{
 		session()->destroy();
 		return redirect()->to('/');
 	}
-	
+
+
+
 
 	//--------------------------------------------------------------------
 }

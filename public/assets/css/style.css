@@ -3,7 +3,7 @@ height: 100%;
 }
 
 body{
-background-color: #f38e9c;
+background-color:#e1e1e1;
 }
 
 .navbar .navbar-brand:hover{
@@ -110,4 +110,9 @@ transform-origin: right bottom;
 }
 .card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
 transform: scale3d(1, 1, 1);
+}
+@media print {
+  #printPageButton {
+      display: none;
+  }
 }
