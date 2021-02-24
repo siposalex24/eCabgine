@@ -48,7 +48,7 @@
 <div class="container">
     <form action="medicalrecord" method="post">
         <div class="form">
-            <h3>Medical record</h3>
+            <h3>Gynecologic history</h3>
             <hr>
             <div class="mb-3">
                 <label for="last_period" class="form-label">Last Period date</label>
@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="form">
-            <h3>Personal history</h3>
+            <h3></h3>
             <hr>
             <div class=" mb-3">
                 <label for="consult_reason" class="form-label">Consult reasons</label>
@@ -101,23 +101,26 @@
             </div>
         </div>
         <?= \Config\Services::validation()->listErrors(); ?>
-        <?php
-        echo '<pre>';
-        print_r($_POST);
-        echo '<pre>';
-        ?>
-        <div class="container">
+
+        <div class="form">
             <div class="row">
-                <div class="cl-sm-6">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1"> Default checkbox </label>
+                <div class="col-md-6">
+                    <h3>Gynecologic examinations</h3>
+                    </h3><br>
+                    <div class="mb-3">
+                        <?php foreach ($examination as $item_exam) : ?>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="<?= esc($item_exam['id_examination']); ?>">
+                                <label class="form-check-label" for="<?= esc($item_exam['id_examination']); ?>"> <?= esc($item_exam['examination_name']); ?> </label>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
+</div>
+<button type="submit" class="btn btn-success">Submit</button>
+</form>
 </div>
 
 </div>

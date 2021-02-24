@@ -11,6 +11,8 @@ use App\Models\CountyModel;
 use App\Models\CityModel;
 use App\Models\ConsultModel;
 use App\Models\ConsultAnaModel;
+use App\Models\ExaminationModel;
+
 
 
 class MedicalRecord extends BaseController
@@ -26,10 +28,12 @@ class MedicalRecord extends BaseController
 		$modelcounty = new CountyModel();
 		$modelcity = new CityModel();
 		$modelconsult = new ConsultModel();
+		$modelExam = new ExaminationModel();
 		$modelanalyses = new ConsultAnaModel($db);
 
 		$data = [
 			'patients' => $modelpacient->getPatient('1'),
+			'examination' => $modelExam->getAllExam(),
 		];
 		$data['patient_city'] = $modelcity->getCity($data['patients']['id_city']);
 		$data['patient_county'] = $modelcounty->getCounty($data['patients']['id_city']);

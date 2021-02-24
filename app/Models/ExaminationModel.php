@@ -4,19 +4,13 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class CabinetModel extends Model
+class ExaminationModel extends Model
 {
-    protected $table = 'cabinet';
+    protected $table = 'examinations';
 
-    public function getCabinet($name)
+    public function getAllExam()
     {
-        //var_dump($this->where(['name' => $name])
-        //  ->get()->getResult('array'));
-        // die();
-        //return $this->where(['name' => $name])
-        //    ->get()->getResult('array');
-        return $this->asArray()
-            ->where(['name' => $name])
-            ->first();
+
+        return $this->get()->getResult('array');
     }
 }
